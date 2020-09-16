@@ -4,19 +4,19 @@
 #include <avr/interrupt.h>
 #include <avr/eeprom.h>
 
-//MIN
+
 #define FIRST_PLUS_MIN 187
-#define FIRST_MINUS_MIN 167
-
-#define SECOND_PLUS_MIN 120
-#define SECOND_MINUS_MIN 0
-
-//MAX
 #define FIRST_PLUS_MAX 196
-#define FIRST_MINUS_MAX 174
 
-#define SECOND_PLUS_MAX 137
+#define FIRST_MINUS_MIN 120
+#define FIRST_MINUS_MAX 137
+
+#define SECOND_PLUS_MIN 167
+#define SECOND_PLUS_MAX 174
+
+#define SECOND_MINUS_MIN 0
 #define SECOND_MINUS_MAX 10
+
 
 #define COOLER0 PB0 // OC0A
 #define COOLER1 PB1 // OC0B
@@ -55,7 +55,7 @@ int main(void)
 	
 	TCNT0 = 0; // Сброс значение счётчика
 	
-	while (eeprom_is_ready()){}
+	while (!eeprom_is_ready()){}
 	//Восстановление значений ШИМ
 	first_value =  eeprom_read_byte(&first);
 	second_value =  eeprom_read_byte(&second);
@@ -108,6 +108,6 @@ int main(void)
 			}
 		}
 		val_key = 255;
-		_delay_ms(300);
+		_delay_ms(100);
 	}
 }
