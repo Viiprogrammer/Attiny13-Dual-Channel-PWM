@@ -1,3 +1,10 @@
+# VS CODE
+.vs
+
+# Intellj IDEA
+.idea
+
+
 *.hex
 *.elf
 *.eep
